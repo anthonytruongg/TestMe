@@ -1,16 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import axios from "axios";
+import ProtectedRoutes from "../ProtectedRoutes";
+
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
+    setMessage("");
     console.log("[SIGNIN.js] email: ", email);
     console.log("[SIGNIN.js] password: ", password);
+    axios
+      .post("http://localhost:3001/user/login", {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        setMessage(res.data.message);
+        localStorage.clear();
+        localStorage.setItem("user-token", res.data.token);
+        localStorage.setItem("user-email", email);
+        console.log(localStorage);
+        if (res.data.message === "Successfully logged in!") {
+          setTimeout(() => {
+            navigate("/home", {
+              state: { email: email },
+            });
+          }, 1500);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
+  useEffect(() => {
+    console.log(localStorage);
+  });
 
   return (
     <motion.div
@@ -62,6 +95,12 @@ function SignIn() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </form>
+              <div className="flex justify-center p-2">
+                <span className="text-green-700 font-semibold font-Jost">
+                  {message}
+                </span>
+              </div>
+
               <div className="flex items-center justify-center pt-3">
                 <button
                   className="bg-teal-500 w-60 p-1 rounded-lg font-Jost font-semibold text-white "

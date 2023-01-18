@@ -31,7 +31,7 @@ function Register() {
     console.log("[REGISTER.js] email: ", email);
     console.log("[REGISTER.js] pass: ", password);
     axios
-      .post("http://localhost:3001/register/user", {
+      .post("http://localhost:3001/user/register", {
         username: username,
         email: email,
         password: password,
@@ -70,7 +70,7 @@ function Register() {
 
   function sendEmail() {
     axios
-      .post("http://localhost:3001/register/user/confirmation", {
+      .post("http://localhost:3001/user/register/confirmation", {
         username: username,
         email: email,
       })
@@ -184,12 +184,6 @@ function Register() {
                   onClick={handleSubmit}
                 >
                   Register
-                </button>
-                <button
-                  className="bg-teal-500 w-60 p-1 rounded-lg font-Jost font-semibold text-white "
-                  onClick={sendEmail}
-                >
-                  send email
                 </button>
               </div>
               <div className="pt-2">
