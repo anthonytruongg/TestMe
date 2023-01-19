@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
-import ProtectedRoutes from "../ProtectedRoutes";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -23,7 +22,9 @@ function SignIn() {
         password: password,
       })
       .then((res) => {
+        // set login success message
         setMessage(res.data.message);
+        // clear local storage of any prior existing keys
         localStorage.clear();
         localStorage.setItem("user-token", res.data.token);
         localStorage.setItem("user-email", email);

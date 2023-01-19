@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import SignIn from "./pages/SignIn";
-import Landing from "./pages/Landing";
-import Home from "./pages/Home";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
 
 function ProtectedRoutes() {
-  const location = useLocation();
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,30 +19,10 @@ function ProtectedRoutes() {
 
   useEffect(() => {
     checkUserToken();
-    console.log(isLoggedIn);
-    console.log(localStorage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
   return isLoggedIn ? <Outlet /> : <SignIn />;
-  // axios
-  //   .post("http://localhost:3001/user/auth", {
-  //     token: token,
-  //   })
-  //   .then((res) => {
-  //     console.log(res.data);
-  //     if (res.data.message === "Not authenticated") {
-  //       return <SignIn />;
-  //     } else {
-  //       return <Outlet />;
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
-  // useEffect(() => {
-  //   console.log("Token: ", token);
-  // });
 }
 
 export default ProtectedRoutes;

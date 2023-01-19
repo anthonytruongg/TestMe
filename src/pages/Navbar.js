@@ -5,8 +5,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("user-token");
-    localStorage.removeItem("user-email");
+    localStorage.clear();
     navigate("/signin", { replace: true });
   };
 
