@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 function CreateFlashcard() {
   return (
     <main>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <div className="flex flex-col justify-center items-center w-screen h-screen">
         <div className="bg-slate-200 p-10 w-80 shadow-2xl rounded-xl">

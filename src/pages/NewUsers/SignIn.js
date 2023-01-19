@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -28,7 +28,7 @@ function SignIn() {
         localStorage.clear();
         localStorage.setItem("user-token", res.data.token);
         localStorage.setItem("user-email", email);
-        console.log(localStorage);
+
         if (res.data.message === "Successfully logged in!") {
           setTimeout(() => {
             navigate("/home", {
@@ -41,10 +41,6 @@ function SignIn() {
         console.log(err);
       });
   }
-
-  useEffect(() => {
-    console.log(localStorage);
-  });
 
   return (
     <motion.div

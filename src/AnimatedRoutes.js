@@ -1,16 +1,17 @@
-import Home from "./pages/Home";
-import About from "./pages/About";
-import CreateSets from "./pages/CreateSets";
-import CreateFlashcard from "./pages/CreateFlashcard";
-import Register from "./pages/Register";
-import SignIn from "./pages/SignIn";
-import NotFound from "./pages/NotFound";
-import ThankYou from "./pages/Misc/ThankYou";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 import { AnimatePresence } from "framer-motion";
-import Landing from "./pages/Landing";
+
+import Landing from "./pages/NewUsers/Landing";
+import Register from "./pages/NewUsers/Register";
+import ThankYou from "./pages/Misc/ThankYou";
+import SignIn from "./pages/NewUsers/SignIn";
+import Home from "./pages/Main/Home";
+import CreateSets from "./pages/Main/CreateSets";
+import CreateFlashcard from "./pages/Main/CreateFlashcard";
+import About from "./pages/Misc/About";
+import NotFound from "./pages/Misc/NotFound";
 
 function AnimatedRoutes() {
   const location = useLocation();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import SignIn from "./pages/SignIn";
+import SignIn from "./pages/NewUsers/SignIn";
 
 function ProtectedRoutes() {
   const navigate = useNavigate();

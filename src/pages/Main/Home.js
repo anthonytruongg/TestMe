@@ -1,18 +1,11 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 function Home() {
-  const location = useLocation();
-
   const email = localStorage.getItem("user-email");
   const token = localStorage.getItem("user-token");
 
-  useEffect(() => {
-    console.log("Email: ", email);
-    console.log("Token: ", token);
-  });
   return (
     <main>
       <Navbar />

@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "../Main/Navbar";
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 
 function About() {

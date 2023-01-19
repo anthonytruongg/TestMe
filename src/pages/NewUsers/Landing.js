@@ -1,6 +1,4 @@
 import React from "react";
-import Register from "./Register";
-import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
 
 function Landing() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -68,19 +68,19 @@ function Register() {
       });
   };
 
-  function sendEmail() {
-    axios
-      .post("http://localhost:3001/user/register/confirmation", {
-        username: username,
-        email: email,
-      })
-      .then((res) => {
-        console.log("Backend data: ", res);
-      })
-      .catch((err) => {
-        console.log("Error: ", err);
-      });
-  }
+  // function sendEmail() {
+  //   axios
+  //     .post("http://localhost:3001/user/register/confirmation", {
+  //       username: username,
+  //       email: email,
+  //     })
+  //     .then((res) => {
+  //       console.log("Backend data: ", res);
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error: ", err);
+  //     });
+  // }
 
   function toggleShow() {
     if (toggle === "password") {
