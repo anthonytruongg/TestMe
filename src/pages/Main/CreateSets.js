@@ -14,7 +14,7 @@ function CreateSets() {
     e.preventDefault();
     console.log("Handling submit.");
     createSet();
-    // navigate("/create/flashcards");
+    navigate("/create/flashcards", { state: { subject: subject } });
   };
 
   const createSet = async () => {
