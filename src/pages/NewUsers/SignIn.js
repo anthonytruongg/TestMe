@@ -100,7 +100,7 @@ function SignIn() {
 
               <div className="flex items-center justify-center pt-3">
                 <button
-                  className="bg-teal-500 w-60 p-1 rounded-lg font-Jost font-semibold text-white "
+                  className="bg-teal-500 w-60 p-1 mb-2 rounded-lg font-Jost font-semibold text-white "
                   onClick={handleSubmit}
                 >
                   Sign in

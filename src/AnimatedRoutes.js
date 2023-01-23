@@ -12,6 +12,7 @@ import CreateSets from "./pages/Main/CreateSets";
 import CreateFlashcard from "./pages/Main/CreateFlashcard";
 import About from "./pages/Misc/About";
 import NotFound from "./pages/Misc/NotFound";
+import TokenExpire from "./pages/Misc/TokenExpire";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function AnimatedRoutes() {
           <Route path="/register" element={<Register />} />
           <Route path="/register/success" element={<ThankYou />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/session/expire" element={<TokenExpire />} />
           <Route path="/" element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
             <Route path="/create" element={<CreateSets />} />

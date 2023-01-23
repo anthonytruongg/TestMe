@@ -6,6 +6,8 @@ module.exports = {
       fontFamily: {
         Barlow: ["Barlow Condensed"],
         Jost: ["Jost"],
+        Noto: ["'Noto Sans JP', sans-serif"],
+        IBM: ["'IBM Plex Sans', sans-serif"],
       },
     },
   },

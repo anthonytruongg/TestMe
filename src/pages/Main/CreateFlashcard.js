@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import axios from "axios";
 function CreateFlashcard() {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [definition, setDefinition] = useState("");
@@ -13,14 +14,11 @@ function CreateFlashcard() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createCard();
-    setTitle("");
-    setDefinition("");
   };
 
   const createCard = async () => {
     const email = localStorage.getItem("user-email");
     const token = localStorage.getItem("user-token");
-
     axios
       .post("http://localhost:3001/create/flashcard", {
         email: email,
@@ -30,8 +28,18 @@ function CreateFlashcard() {
         definition: definition,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
       });
+    setDefinition("");
+    setTitle("");
+  };
+
+  useEffect(() => {
+    console.log(subject);
+  });
+
+  const handleDone = () => {
+    navigate("/home", { replace: true });
   };
 
   return (
@@ -79,7 +87,10 @@ function CreateFlashcard() {
             />
           </form>
           <div className="flex gap-2 p-2">
-            <button className="bg-teal-500 w-60 p-1 rounded-lg font-Jost font-semibold text-white">
+            <button
+              onClick={handleDone}
+              className="bg-teal-500 w-60 p-1 rounded-lg font-Jost font-semibold text-white"
+            >
               Done
             </button>
             <button
