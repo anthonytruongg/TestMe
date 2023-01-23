@@ -1,20 +1,34 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Home() {
+  const [setsArray, setSetsArray] = useState([]);
+
   const email = localStorage.getItem("user-email");
   const token = localStorage.getItem("user-token");
+  const user_id = localStorage.getItem("user-id");
 
   // use link http://localhost:3001/user/sets/63caf3a0061003c956482838
+
   function fetchSets() {
-    axios.get("http://localhost:3001/user/sets").then((res) => {
-      console.log(res.data);
-    });
+    axios
+      .get(`http://localhost:3001/user/sets/${user_id}`)
+      .then((res) => {
+        console.log(res.data);
+        setSetsArray(res.data.sets);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
+  useEffect(() => {
+    fetchSets();
+  }, []);
 
   return (
     <motion.div
@@ -26,21 +40,23 @@ function Home() {
         <Navbar />
         <section className="min-h-screen p-4">
           <div className="flex flex-col m-4 gap-10 justify-center items-center px-10 md:px-20 lg:px-40 ">
-            <div
-              className="bg-violet-200 p-4 text-center lg:p-10 lg:w-80 w-60 hover:-translate-y-3 hover:scale-125 transition ease-in-out
+            {setsArray.map((set, index) => {
+              return (
+                <div
+                  key={index}
+                  className="bg-violet-200 p-4 text-center lg:p-10 lg:w-80 w-60 hover:-translate-y-3 hover:scale-125 transition ease-in-out
               shadow-2xl rounded-xl font-Noto text-zinc-500 font-bold text-2xl text-ellipsis overflow-clip"
-            >
-              <Link className="" onClick={fetchSets}>
-                Sociology 101
-              </Link>
-            </div>
-
-            <div
-              className="bg-violet-200 p-4 text-center lg:p-10 lg:w-80 w-60 hover:-translate-y-3 hover:scale-125 transition ease-in-out
-            shadow-2xl rounded-xl font-Noto text-zinc-500 font-bold text-2xl text-ellipsis overflow-clip"
-            >
-              <Link className="">Physics 101</Link>
-            </div>
+                >
+                  <Link
+                    to="/flashcards"
+                    onClick={(e) => console.log(set._id)}
+                    state={{ subject: set.subject, flashcards: set.flashcards }}
+                  >
+                    {set.subject}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </section>
       </main>

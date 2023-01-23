@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
 
+  const email = localStorage.getItem("user-email");
+
   const logout = () => {
     localStorage.clear();
     navigate("/signin", { replace: true });
@@ -13,6 +15,7 @@ function Navbar() {
     <nav className="flex justify-between p-3 items-center bg-gray-300 font-Jost font-semibold text-2xl">
       <div className="">
         <Link to="/home">TestMe</Link>
+        <p>{email}</p>
       </div>
       <div className="flex flex-col">
         <ul>

@@ -13,6 +13,7 @@ import CreateFlashcard from "./pages/Main/CreateFlashcard";
 import About from "./pages/Misc/About";
 import NotFound from "./pages/Misc/NotFound";
 import TokenExpire from "./pages/Misc/TokenExpire";
+import Flashcards from "./pages/Main/Flashcards";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function AnimatedRoutes() {
           <Route path="/session/expire" element={<TokenExpire />} />
           <Route path="/" element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
+            <Route path="/flashcards" element={<Flashcards />} />
             <Route path="/create" element={<CreateSets />} />
             <Route path="/create/flashcards" element={<CreateFlashcard />} />
             <Route path="/about" element={<About />} />

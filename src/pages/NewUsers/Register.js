@@ -27,9 +27,6 @@ function Register() {
       all: "",
     });
     e.preventDefault();
-    console.log("[REGISTER.js] username: ", username);
-    console.log("[REGISTER.js] email: ", email);
-    console.log("[REGISTER.js] pass: ", password);
     axios
       .post("http://localhost:3001/user/register", {
         username: username,

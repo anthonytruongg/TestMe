@@ -28,6 +28,8 @@ function SignIn() {
         localStorage.clear();
         localStorage.setItem("user-token", res.data.token);
         localStorage.setItem("user-email", email);
+        localStorage.setItem("user-id", res.data.id);
+        localStorage.setItem("user-name", res.data.username);
 
         if (res.data.message === "Successfully logged in!") {
           setTimeout(() => {
