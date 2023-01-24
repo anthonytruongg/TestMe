@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import Navbar from "./Navbar";
@@ -10,6 +10,11 @@ function Flashcards(props) {
   const [cardsArray, setCardsArray] = useState([]);
 
   const user_id = localStorage.getItem("user-id");
+  const navigate = useNavigate();
+
+  function createFlashcard() {
+    navigate("/create/flashcards", { replace: true, state: { subject } });
+  }
   //   const set_id = setID;
 
   //   function fetchCards() {
@@ -37,6 +42,9 @@ function Flashcards(props) {
       <main>
         <Navbar />
         <section className="min-h-screen p-4">
+          <button className="" onClick={createFlashcard}>
+            Add
+          </button>
           <div className="flex flex-col m-4 gap-10 justify-center items-center px-10 md:px-20 lg:px-40 ">
             {flashcards.map((card, index) => {
               return (
