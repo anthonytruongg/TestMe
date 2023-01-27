@@ -14,6 +14,7 @@ import About from "./pages/Misc/About";
 import NotFound from "./pages/Misc/NotFound";
 import TokenExpire from "./pages/Misc/TokenExpire";
 import Flashcards from "./pages/Main/Flashcards";
+import VerifyUser from "./pages/Misc/VerifyUser";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function AnimatedRoutes() {
           <Route path="/" element={<Landing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/register/success" element={<ThankYou />} />
+          <Route path="/register/verify" element={<VerifyUser />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/session/expire" element={<TokenExpire />} />
           <Route path="/" element={<ProtectedRoutes />}>
