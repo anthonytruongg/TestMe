@@ -5,6 +5,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 function Register() {
+  const registerEndpoint = "http://localhost:3001/user/register";
+
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -28,7 +30,7 @@ function Register() {
     });
     e.preventDefault();
     axios
-      .post("http://localhost:3001/user/register", {
+      .post(registerEndpoint, {
         username: username,
         email: email,
         password: password,
@@ -64,20 +66,6 @@ function Register() {
         console.log("Error: ", err);
       });
   };
-
-  // function sendEmail() {
-  //   axios
-  //     .post("http://localhost:3001/user/register/confirmation", {
-  //       username: username,
-  //       email: email,
-  //     })
-  //     .then((res) => {
-  //       console.log("Backend data: ", res);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Error: ", err);
-  //     });
-  // }
 
   function toggleShow() {
     if (toggle === "password") {

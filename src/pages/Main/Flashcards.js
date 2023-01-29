@@ -1,44 +1,66 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { motion } from "framer-motion";
-import Navbar from "./Navbar";
 import FlashcardNavbar from "./FlashcardNavbar";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
+import axios from "axios";
 import "./Modal.css";
 
 function Flashcards() {
   const location = useLocation();
-  const { subject, flashcards } = location.state;
+  const { subject, flashcards, set_ID } = location.state;
   const [cardsArray, setCardsArray] = useState([]);
+
+  const [title, setTitle] = useState("");
+  const [definition, setDefinition] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [ID, setID] = useState("");
 
   const user_id = localStorage.getItem("user-id");
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
-  const toggleModal = () => {
+
+  const toggleModal = (id) => {
+    // console.log(id);
+    setID(id);
     setModal(!modal);
   };
 
-  //   const set_id = setID;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .put(`http://localhost:3001/update/flashcard/${ID}`, {
+        title: title,
+        definition: definition,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(ID);
+  };
 
-  //   function fetchCards() {
-  // axios
-  //   .get(`http://localhost:3001/user/sets/${user_id}/${set_id}`)
-  //   .then((res) => {
-  //     console.log(res.data);
-  //     //   setCardsArray(res.data.flashcards);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  //   }
+  function fetchCards() {
+    axios
+      .get(`http://localhost:3001/user/sets/retrieve/${set_ID}`)
+      .then((res) => {
+        console.log(res.data.flashcards);
+        // setCardsArray(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-  //   useEffect(() => {
-  //     fetchCards();
-  //   }, []);
+  useEffect(() => {
+    console.log(set_ID);
+  });
 
   // card._id <- id of card, use this to display a modal and edit a specific flashcard
   // after adding modal functionality, i need to pass the card ID when a user clicks the
@@ -60,14 +82,15 @@ function Flashcards() {
             className="flex flex-col justify-center items-center 
           lg:grid lg:grid-cols-4 lg:grid-rows-6"
           >
+            <button onClick={fetchCards}>FETCH CARDS</button>
             {flashcards.map((card, index) => {
               return (
                 <div
                   key={index}
-                  className="bg-violet-200 p-4 m-2 lg:m-4 text-start lg:p-10 
+                  className="bg-violet-400 p-4 m-2 lg:m-4 text-start lg:p-10 
                   lg:w-96 w-80 hover:-translate-y-3 hover:scale-105 
                   transition ease-in-out
-                  shadow-2xl rounded-xl font-Noto text-zinc-500 font-bold 
+                  shadow-2xl rounded-xl font-Jost text-white
                   text-ellipsis overflow-clip"
                 >
                   <div className="flex flex-row justify-between gap-8 p-1">
@@ -81,7 +104,7 @@ function Flashcards() {
                       <div className="">
                         <p>
                           <MdOutlineModeEditOutline
-                            onClick={toggleModal}
+                            onClick={(e) => toggleModal(card._id)}
                             className="text-2xl"
                           />
                         </p>
@@ -101,19 +124,57 @@ function Flashcards() {
             <div className="modal">
               <div className="overlay"></div>
               <div className="modal-content">
-                <h2>HELLO MODAL</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Inventore, nam impedit. Dolorum, necessitatibus ex, deleniti
-                  non praesentium dolores tenetur delectus accusamus aperiam
-                  nulla cum. Ratione ad quibusdam rem laboriosam quaerat fuga,
-                  officia enim dolor earum a eligendi, illum impedit iusto quod
-                  mollitia voluptatum nesciunt nulla ipsum soluta id! Expedita,
-                  deserunt?
-                </p>
-                <button className="close-modal" onClick={toggleModal}>
-                  CLOSE
-                </button>
+                <h1 className="text-2xl text-center mb-4 font-Jost font-bold text-gray-600">
+                  Edit existing card
+                </h1>
+                <form
+                  action=""
+                  onSubmit={handleSubmit}
+                  className="flex flex-col items-start gap-2 pb-2"
+                >
+                  <label
+                    htmlFor=""
+                    className="text-stone-500 font-medium lg:font-bold"
+                  >
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    className="outline-none font-light font-Barlow p-1 bg-transparent outline-neutral-300 rounded-md w-60 lg:text-xl "
+                    placeholder=""
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <label
+                    htmlFor=""
+                    className="text-stone-500 font-medium lg:font-bold"
+                  >
+                    Definition
+                  </label>
+                  <textarea
+                    type="text"
+                    className="resize-none outline-none font-light font-Barlow p-1 bg-transparent outline-neutral-300 rounded-md w-60 lg:text-xl "
+                    placeholder=""
+                    rows={5}
+                    cols={5}
+                    value={definition}
+                    onChange={(e) => setDefinition(e.target.value)}
+                  />
+                </form>
+                <div className="flex justify-between p-1">
+                  <button
+                    onClick={toggleModal}
+                    className="w-20 p-1 rounded-lg font-Jost font-light text-black"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleSubmit}
+                    className="w-20 p-1 rounded-lg font-Jost font-light text-black"
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
           )}

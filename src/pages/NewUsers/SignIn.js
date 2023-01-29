@@ -1,10 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 
 function SignIn() {
+  const loginEndpoint = "http://localhost:3001/user/login";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -17,7 +19,7 @@ function SignIn() {
     console.log("[SIGNIN.js] email: ", email);
     console.log("[SIGNIN.js] password: ", password);
     axios
-      .post("http://localhost:3001/user/login", {
+      .post(loginEndpoint, {
         email: email,
         password: password,
       })
@@ -26,12 +28,12 @@ function SignIn() {
         setMessage(res.data.message);
         // clear local storage of any prior existing keys
         localStorage.clear();
-        localStorage.setItem("user-token", res.data.token);
-        localStorage.setItem("user-email", email);
-        localStorage.setItem("user-id", res.data.id);
-        localStorage.setItem("user-name", res.data.username);
 
         if (res.data.message === "Successfully logged in!") {
+          localStorage.setItem("user-token", res.data.token);
+          localStorage.setItem("user-email", email);
+          localStorage.setItem("user-id", res.data.id);
+          localStorage.setItem("user-name", res.data.username);
           setTimeout(() => {
             navigate("/home", {
               state: { email: email },
@@ -43,6 +45,10 @@ function SignIn() {
         console.log(err);
       });
   }
+
+  useEffect(() => {
+    // console.log(localStorage);
+  });
 
   return (
     <motion.div

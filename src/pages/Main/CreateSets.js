@@ -41,8 +41,6 @@ function CreateSets() {
       exit={{ opacity: 0 }}
     >
       <main>
-        {/* <Navbar /> */}
-
         <div className="flex flex-col justify-center items-center w-screen h-screen">
           <div className="bg-slate-200 p-10 w-80 shadow-2xl rounded-xl">
             <h1 className="text-2xl text-center font-Jost font-bold text-gray-600">
