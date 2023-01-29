@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -15,7 +15,6 @@ function CreateSets() {
     e.preventDefault();
     console.log("Handling submit.");
     createSet();
-    navigate("/create/flashcards", { state: { subject: subject } });
   };
 
   const createSet = async () => {
@@ -30,7 +29,13 @@ function CreateSets() {
         description: description,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        navigate("/create/flashcards", {
+          state: { setID: res.data.setId, subject: subject },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 

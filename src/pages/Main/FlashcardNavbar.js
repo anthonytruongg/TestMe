@@ -9,12 +9,15 @@ import { IoCreateOutline } from "react-icons/io5";
 import { BiAddToQueue } from "react-icons/bi";
 
 function FlashcardNavbar(props) {
+  const set_ID = props.set_ID;
   const location = useLocation();
   const navigate = useNavigate();
-  const { subject, flashcards } = location.state;
+  const { subject } = location.state;
 
   function createFlashcard() {
-    navigate("/create/flashcards", { replace: true, state: { subject } });
+    navigate("/create/flashcards", {
+      state: { setID: set_ID, subject: subject },
+    });
   }
 
   return (
@@ -31,6 +34,7 @@ function FlashcardNavbar(props) {
           className="hover:scale-110 hover:-translate-y-2 transition ease-in-out p-1"
         >
           <BiAddToQueue />
+          {/* {set_ID} */}
         </button>
       </div>
     </main>

@@ -11,7 +11,7 @@ function CreateFlashcard() {
   const [definition, setDefinition] = useState("");
   const [message, setMessage] = useState("");
 
-  const subject = location.state?.subject;
+  const { setID, subject } = location.state;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +47,9 @@ function CreateFlashcard() {
   });
 
   const handleDone = () => {
-    navigate("/home", { replace: true });
+    navigate("/flashcards", {
+      state: { set_ID: setID, subject: subject },
+    });
   };
 
   return (
