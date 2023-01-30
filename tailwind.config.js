@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -6,8 +5,9 @@ module.exports = {
       fontFamily: {
         Barlow: ["Barlow Condensed"],
         Jost: ["Jost"],
-        Noto: ["'Noto Sans JP', sans-serif"],
-        IBM: ["'IBM Plex Sans', sans-serif"],
+        Noto: ["Noto Sans JP", "sans-serif"],
+        IBM: ["IBM Plex Sans", "sans-serif"],
+        Urbanist: ["Urbanist", "sans-serif "],
       },
     },
   },

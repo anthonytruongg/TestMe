@@ -199,7 +199,7 @@ import "./Modal.css";
 function Flashcards() {
   const location = useLocation();
 
-  const { set_ID } = location.state;
+  const { set_ID, subject, description } = location.state;
   const [flashcards, setFlashcards] = useState([]);
 
   // editing flashcard
@@ -214,11 +214,19 @@ function Flashcards() {
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
-  const toggleModal = (id) => {
+  const toggleModal = (id, title, definition) => {
     // console.log(id);
     setID(id);
     setModal(!modal);
+    setTitle(title);
+    setDefinition(definition);
+  };
+
+  const toggleDeleteModal = (id) => {
+    setID(id);
+    setDeleteModal(!deleteModal);
   };
 
   const handleSubmit = async (e) => {
@@ -239,9 +247,19 @@ function Flashcards() {
     // console.log(ID);
   };
 
+  const handleDelete = async () => {
+    await axios
+      .delete(`http://localhost:3001/delete/flashcard/${ID}`)
+      .then((res) => {
+        console.log(res.data);
+        fetchCards();
+        toggleDeleteModal();
+      });
+  };
+
   function fetchCards() {
     axios
-      .get(`http://localhost:3001/user/sets/retrieve/${set_ID}`)
+      .get(`http://localhost:3001/retrieve/set/${set_ID}`)
       .then((res) => {
         console.log(res.data.flashcards);
         setFlashcards(res.data.flashcards);
@@ -269,19 +287,30 @@ function Flashcards() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <main>
+      <main className="min-h-screen">
         <FlashcardNavbar set_ID={set_ID} />
-        <section className="min-h-screen p-4">
-          <div
-            className="flex flex-col justify-center items-center 
-          lg:grid lg:grid-cols-4 lg:grid-rows-6"
-          >
+
+        <section>
+          <div className="flex flex-col justify-center items-center">
+            <div className="shadow-2xl rounded-lg text-white p-1 mt-2">
+              <h1 className="font-Barlow text-xl lg:text-4xl">
+                Set: {subject}
+              </h1>
+              <h1 className="font-Barlow text-xl lg:text-4xl">
+                Info: {description}
+              </h1>
+            </div>
+          </div>
+        </section>
+
+        <section className=" flex justify-center items-center">
+          <div className="lg:grid lg:grid-cols-3">
             {/* <button onClick={fetchCards}>FETCH CARDS</button> */}
             {flashcards.map((card, index) => {
               return (
                 <div
                   key={index}
-                  className="bg-violet-400 p-4 m-2 lg:m-4 text-start lg:p-10 
+                  className="bg-violet-400 p-4 m-2 lg:m-2 lg:p-2 text-start
                   lg:w-96 w-80 hover:-translate-y-3 hover:scale-105 
                   transition ease-in-out
                   shadow-2xl rounded-xl font-Jost text-white
@@ -298,14 +327,19 @@ function Flashcards() {
                       <div className="">
                         <p>
                           <MdOutlineModeEditOutline
-                            onClick={(e) => toggleModal(card._id)}
-                            className="text-2xl"
+                            onClick={(e) =>
+                              toggleModal(card._id, card.title, card.definition)
+                            }
+                            className="text-2xl cursor-pointer"
                           />
                         </p>
                       </div>
                       <div className="">
                         <p>
-                          <BsTrash className="text-2xl" />
+                          <BsTrash
+                            onClick={(e) => toggleDeleteModal(card._id)}
+                            className="text-2xl cursor-pointer"
+                          />
                         </p>
                       </div>
                     </div>
@@ -367,6 +401,30 @@ function Flashcards() {
                     className="w-20 p-1 rounded-lg font-Jost font-light text-black"
                   >
                     Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          {deleteModal && (
+            <div className="modal">
+              <div className="overlay"></div>
+              <div className="modal-content">
+                <h1 className="text-2xl text-center mb-4 font-Jost font-bold text-gray-600">
+                  Remove this term?
+                </h1>
+                <div className="flex justify-between p-1">
+                  <button
+                    onClick={toggleDeleteModal}
+                    className="w-20 p-1 rounded-lg font-Jost font-light text-black"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="w-20 p-1 rounded-lg font-Jost font-light text-black"
+                  >
+                    Delete
                   </button>
                 </div>
               </div>

@@ -18,9 +18,8 @@ function About() {
               TestMe is a free flashcard application.
             </h1>
             <p className="text-md py-4 lg:py-8 lg:text-lg font-Jost text-slate-600 font-light p-2">
-              Created by a student, for students. TestMe strives to provide free
-              and efficient methods to help you study. Only thing we ask for is
-              to share our site with your friends!
+              Created by a student! This project was made to help students with
+              their everyday study tasks.
             </p>
             <h2 className="text-xl lg:text-2xl text-center font-Jost font-light text-gray-600">
               Feel free to check me out here.
