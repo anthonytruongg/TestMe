@@ -16,8 +16,6 @@ function SignIn() {
   function handleSubmit(e) {
     e.preventDefault();
     setMessage("");
-    console.log("[SIGNIN.js] email: ", email);
-    console.log("[SIGNIN.js] password: ", password);
     axios
       .post(loginEndpoint, {
         email: email,
@@ -46,9 +44,7 @@ function SignIn() {
       });
   }
 
-  useEffect(() => {
-    // console.log(localStorage);
-  });
+  useEffect(() => {});
 
   return (
     <motion.div
