@@ -43,10 +43,13 @@ function Flashcards() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put(`http://localhost:3001/update/flashcard/${ID}`, {
-        title: title,
-        definition: definition,
-      })
+      .put(
+        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/update/flashcard/${ID}`,
+        {
+          title: title,
+          definition: definition,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         fetchCards();
@@ -60,7 +63,9 @@ function Flashcards() {
 
   const handleDelete = async () => {
     await axios
-      .delete(`http://localhost:3001/delete/flashcard/${ID}`)
+      .delete(
+        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/delete/flashcard/${ID}`
+      )
       .then((res) => {
         console.log(res.data);
         fetchCards();
@@ -70,7 +75,9 @@ function Flashcards() {
 
   function fetchCards() {
     axios
-      .get(`http://localhost:3001/retrieve/set/${set_ID}`)
+      .get(
+        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/retrieve/set/${set_ID}`
+      )
       .then((res) => {
         setFlashcards(res.data.flashcards);
       })

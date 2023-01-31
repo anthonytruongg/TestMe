@@ -91,7 +91,9 @@ function StudyFlashcards(props) {
 
   function fetchCards() {
     axios
-      .get(`http://localhost:3001/retrieve/set/${setID}`)
+      .get(
+        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/retrieve/set/${setID}`
+      )
       .then((res) => {
         setFetchedFlashcards(res.data.flashcards);
       })

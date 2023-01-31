@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 function SignIn() {
-  const loginEndpoint = "http://localhost:3001/user/login";
+  const loginEndpoint =
+    "https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/user/login";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

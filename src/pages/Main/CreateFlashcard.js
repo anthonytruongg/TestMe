@@ -22,13 +22,16 @@ function CreateFlashcard() {
     const email = localStorage.getItem("user-email");
     const token = localStorage.getItem("user-token");
     axios
-      .post("http://localhost:3001/create/flashcard", {
-        email: email,
-        token: token,
-        subject: subject,
-        title: title,
-        definition: definition,
-      })
+      .post(
+        "https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/create/flashcard",
+        {
+          email: email,
+          token: token,
+          subject: subject,
+          title: title,
+          definition: definition,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setDefinition("");

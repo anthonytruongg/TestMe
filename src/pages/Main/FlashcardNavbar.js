@@ -33,7 +33,9 @@ function FlashcardNavbar(props) {
 
   const deleteSet = async () => {
     await axios
-      .delete(`http://localhost:3001/delete/set/${set_ID}`)
+      .delete(
+        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/delete/set/${set_ID}`
+      )
       .then((res) => {
         console.log(res.data);
         navigate("/home", { replace: true });

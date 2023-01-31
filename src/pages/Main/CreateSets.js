@@ -22,12 +22,15 @@ function CreateSets() {
     const token = localStorage.getItem("user-token");
 
     axios
-      .post("http://localhost:3001/create/set", {
-        email: email,
-        token: token,
-        subject: subject,
-        description: description,
-      })
+      .post(
+        "https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/create/set",
+        {
+          email: email,
+          token: token,
+          subject: subject,
+          description: description,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         navigate("/create/flashcards", {

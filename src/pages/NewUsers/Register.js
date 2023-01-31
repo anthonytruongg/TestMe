@@ -5,7 +5,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 function Register() {
-  const registerEndpoint = "http://localhost:3001/user/register";
+  const registerEndpoint =
+    "https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/user/register";
 
   const navigate = useNavigate();
 

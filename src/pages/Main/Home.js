@@ -20,7 +20,9 @@ function Home() {
 
   function fetchSets() {
     axios
-      .get(`http://localhost:3001/retrieve/sets/${user_id}`)
+      .get(
+        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/retrieve/sets/${user_id}`
+      )
       .then((res) => {
         console.log(res.data);
         setSetsArray(res.data.sets);
