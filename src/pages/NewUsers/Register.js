@@ -36,7 +36,6 @@ function Register() {
         password: password,
       })
       .then((res) => {
-        console.log("Backend data: ", res);
         if (
           res.data === "Username already exists!" ||
           res.data === "Email already exists!"

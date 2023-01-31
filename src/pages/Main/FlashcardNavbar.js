@@ -22,7 +22,6 @@ function FlashcardNavbar(props) {
   const toggleModal = (id) => {
     setModal(!modal);
     setSetID(id);
-    console.log(setID);
   };
 
   function createFlashcard() {
@@ -35,7 +34,6 @@ function FlashcardNavbar(props) {
     await axios
       .delete(`https://testme.cyclic.app/delete/set/${set_ID}`)
       .then((res) => {
-        console.log(res.data);
         navigate("/home", { replace: true });
       })
       .catch((err) => {

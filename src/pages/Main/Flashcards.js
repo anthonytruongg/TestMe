@@ -51,7 +51,6 @@ function Flashcards() {
         }
       )
       .then((res) => {
-        console.log(res.data);
         fetchCards();
         toggleModal();
       })
@@ -65,7 +64,6 @@ function Flashcards() {
     await axios
       .delete(`https://testme.cyclic.app/delete/flashcard/${ID}`)
       .then((res) => {
-        console.log(res.data);
         fetchCards();
         toggleDeleteModal();
       });

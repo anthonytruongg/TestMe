@@ -29,7 +29,6 @@ function CreateSets() {
         description: description,
       })
       .then((res) => {
-        console.log(res.data);
         navigate("/create/flashcards", {
           state: { setID: res.data.setId, subject: subject },
         });

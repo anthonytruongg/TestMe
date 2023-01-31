@@ -20,7 +20,6 @@ function Home() {
     axios
       .get(`https://testme.cyclic.app/retrieve/sets/${user_id}`)
       .then((res) => {
-        console.log(res.data);
         setSetsArray(res.data.sets);
       })
       .catch((err) => {

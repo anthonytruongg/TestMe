@@ -30,7 +30,6 @@ function CreateFlashcard() {
         definition: definition,
       })
       .then((res) => {
-        console.log(res.data);
         setDefinition("");
         setTitle("");
         if (res.data.message === "Please fill out all fields.") {
