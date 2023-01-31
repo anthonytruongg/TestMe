@@ -60,16 +60,17 @@ function Home() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <main>
+        <main className="min-h-screen">
           <Navbar />
-          <section className="min-h-screen p-4">
-            <div className="flex flex-col m-4 gap-10 justify-center items-center px-10 md:px-20 lg:px-40 overflow-hidden ">
+          <section className="flex justify-center items-center p-4 m-4">
+            {/* <div className="flex flex-col m-4 gap-10 justify-center items-center px-10 md:px-20 lg:px-40 "> */}
+            <div className="lg:grid lg:grid-cols-3 gap-20">
               {setsArray.map((set, index) => {
                 return (
                   <div
                     key={index}
-                    className="bg-violet-400 p-4 text-center lg:p-10 lg:w-80 w-60 hover:-translate-y-3 hover:scale-125 transition ease-in-out
-                    shadow-2xl rounded-xl font-Jost text-white text-2xl text-ellipsis 
+                    className="bg-stone-500 p-4 m-2 text-center lg:p-10 lg:w-80 w-60 hover:-translate-y-3 hover:scale-125 transition ease-in-out
+                    shadow-2xl rounded-xl font-Jost text-white text-2xl text-ellipsis
                     overflow-clip cursor-pointer"
                     onClick={() =>
                       navigate("/flashcards", {

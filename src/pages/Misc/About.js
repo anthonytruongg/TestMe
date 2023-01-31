@@ -14,7 +14,7 @@ function About() {
 
         <div className="flex flex-col justify-center items-center w-screen h-screen">
           <div className="bg-slate-200 p-10 w-80 shadow-2xl rounded-xl text-center leading-8">
-            <h1 className="text-2xl lg:text-4xl text-center font-Jost font-bold text-gray-600">
+            <h1 className="text-2xl lg:text-4xl text-center font-Barlow font-bold text-gray-600">
               TestMe is a free flashcard application.
             </h1>
             <p className="text-md py-4 lg:py-8 lg:text-lg font-Jost text-slate-600 font-light p-2">

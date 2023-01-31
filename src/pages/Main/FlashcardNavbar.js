@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { HiOutlineHome } from "react-icons/hi";
-import { IoTrashBinOutline } from "react-icons/io5";
+import { IoTrashBinOutline, IoAppsOutline } from "react-icons/io5";
 import { BiAddToQueue } from "react-icons/bi";
+import { GrAppsRounded } from "react-icons/gr";
 import axios from "axios";
 
 function FlashcardNavbar(props) {
@@ -10,6 +11,9 @@ function FlashcardNavbar(props) {
   const navigate = useNavigate();
 
   const set_ID = props.set_ID;
+  const flashcards = props.flashcards;
+  const description = props.description;
+
   const { subject } = location.state;
 
   const [modal, setModal] = useState(false);
@@ -39,16 +43,33 @@ function FlashcardNavbar(props) {
       });
   };
 
+  function studyFlashcards() {
+    navigate("/flashcards/study", {
+      state: {
+        setID: set_ID,
+        flashcards: flashcards,
+        subject: subject,
+        description: description,
+      },
+    });
+  }
+
   return (
-    <main className="bg-neutral-100 text-2xl p-1 lg:text-5xl lg:p-4">
+    <main className="bg-stone-200 text-2xl p-1 lg:text-5xl lg:p-4">
       {/* {set_ID} <- this ID needs to be passed! */}
-      <div className="flex flex-row text-gray-400 items-center justify-between">
+      <div className="flex flex-row text-stone-500 items-center justify-between">
         <Link
           to="/home"
           className="hover:scale-110 hover:-translate-y-2 transition ease-in-out p-1"
         >
           <HiOutlineHome />
         </Link>
+        <button
+          onClick={studyFlashcards}
+          className="hover:scale-110 hover:-translate-y-2 transition ease-in-out p-1"
+        >
+          <IoAppsOutline />
+        </button>
         <button className="hover:scale-110 hover:-translate-y-2 transition ease-in-out p-1">
           <IoTrashBinOutline onClick={(e) => toggleModal(set_ID)} />
         </button>

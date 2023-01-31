@@ -18,8 +18,8 @@ function Navbar() {
   };
 
   return (
-    <main className="bg-neutral-100 text-2xl p-1 lg:text-5xl lg:p-4">
-      <div className="flex flex-row text-gray-400 items-center justify-between">
+    <main className="bg-stone-200 text-2xl p-1 lg:text-5xl lg:p-4">
+      <div className="flex flex-row text-stone-500 items-center justify-between">
         <Link
           to="/home"
           className="hover:scale-110 hover:-translate-y-2 transition ease-in-out p-1"
