@@ -22,15 +22,12 @@ function CreateSets() {
     const token = localStorage.getItem("user-token");
 
     axios
-      .post(
-        "https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/create/set",
-        {
-          email: email,
-          token: token,
-          subject: subject,
-          description: description,
-        }
-      )
+      .post("https://gold-lovely-viper.cyclic.app/create/set", {
+        email: email,
+        token: token,
+        subject: subject,
+        description: description,
+      })
       .then((res) => {
         console.log(res.data);
         navigate("/create/flashcards", {
@@ -109,49 +106,3 @@ function CreateSets() {
 }
 
 export default CreateSets;
-
-// import React from "react";
-// import Navbar from "./Navbar";
-// function Create() {
-//   return (
-//     <main>
-//       <Navbar />
-
-//       <div className="flex flex-col justify-center items-center w-screen h-screen">
-//         <div className="bg-slate-200 p-10 w-80 shadow-2xl rounded-xl">
-//           <h1 className="text-2xl text-center font-Jost font-bold text-gray-600">
-//             Create a set
-//           </h1>
-//           <form action="" className="flex flex-col items-start gap-2 pb-2">
-//             <label
-//               htmlFor=""
-//               className="text-stone-500 font-medium lg:font-bold"
-//             >
-//               Title
-//             </label>
-//             <input
-//               type="text"
-//               className="outline-none font-light font-Barlow p-1 bg-transparent outline-neutral-300 rounded-md w-60 lg:text-xl "
-//               placeholder=""
-//             />
-//             <label
-//               htmlFor=""
-//               className="text-stone-500 font-medium lg:font-bold"
-//             >
-//               Definition
-//             </label>
-//             <textarea
-//               type="text"
-//               className="resize-none outline-none font-light font-Barlow p-1 bg-transparent outline-neutral-300 rounded-md w-60 lg:text-xl "
-//               placeholder=""
-//               rows={5}
-//               cols={5}
-//             />
-//           </form>
-//         </div>
-//       </div>
-//     </main>
-//   );
-// }
-
-// export default Create;

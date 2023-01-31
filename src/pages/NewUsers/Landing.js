@@ -1,35 +1,3 @@
-// import React, { useEffect } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import LandingNavbar from "./LandingNavbar";
-// import CreateSet from "./images/createset.png";
-
-// function Landing() {
-//   const navigate = useNavigate();
-//   const token = localStorage.getItem("user-token");
-
-//   useEffect(() => {
-//     if (token) {
-//       navigate("/home", { replace: true });
-//     }
-//   });
-
-//   return (
-//     <main className="">
-//       <LandingNavbar />
-//       <div className="flex flex-col justify-center items-center h-screen ">
-//         <div
-//         // className=""
-//         // style={{ backgroundImage: `url(${CreateSet})` }}
-//         >
-//           <img className="w-52" src={CreateSet} alt="Create Set" />
-//         </div>
-//       </div>
-//     </main>
-//   );
-// }
-
-// export default Landing;
-
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 

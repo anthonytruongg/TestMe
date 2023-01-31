@@ -91,9 +91,7 @@ function StudyFlashcards(props) {
 
   function fetchCards() {
     axios
-      .get(
-        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/retrieve/set/${setID}`
-      )
+      .get(`https://gold-lovely-viper.cyclic.app/retrieve/set/${setID}`)
       .then((res) => {
         setFetchedFlashcards(res.data.flashcards);
       })

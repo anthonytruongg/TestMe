@@ -5,8 +5,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 function Register() {
-  const registerEndpoint =
-    "https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/user/register";
+  const registerEndpoint = "https://gold-lovely-viper.cyclic.app/user/register";
 
   const navigate = useNavigate();
 

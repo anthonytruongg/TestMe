@@ -75,9 +75,7 @@ function Flashcards() {
 
   function fetchCards() {
     axios
-      .get(
-        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/retrieve/set/${set_ID}`
-      )
+      .get(`https://gold-lovely-viper.cyclic.app/retrieve/set/${set_ID}`)
       .then((res) => {
         setFlashcards(res.data.flashcards);
       })
@@ -88,15 +86,7 @@ function Flashcards() {
 
   useEffect(() => {
     fetchCards();
-    // console.log(set_ID);
   }, []);
-
-  // card._id <- id of card, use this to display a modal and edit a specific flashcard
-  // after adding modal functionality, i need to pass the card ID when a user clicks the
-  // edit button, that way it presents a new form for them to edit the card.
-  // the card ID should be passed to the modal component, and then the ID can be
-  // used to update the information on the backend after the form is submitted and a
-  // POST req is sent to the backend.
 
   return (
     <motion.div
