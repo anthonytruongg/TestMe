@@ -55,7 +55,14 @@ function Register() {
           setError({ email: res.data });
         }
         if (res.data === "User registered!") {
-          console.log("navigate");
+          axios.post(
+            "https://testme.cyclic.app/user/register/sendconfirmation",
+            {
+              username: username,
+              email: email,
+            }
+          );
+          // console.log("navigate");
           setTimeout(() => {
             navigate("/register/success");
           }, 1000);
