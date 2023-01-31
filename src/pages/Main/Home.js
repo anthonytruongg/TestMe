@@ -2,10 +2,8 @@ import React from "react";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { MdOutlineModeEditOutline } from "react-icons/md";
-import { BsTrash } from "react-icons/bs";
 
 function Home() {
   const navigate = useNavigate();
@@ -20,7 +18,7 @@ function Home() {
 
   function fetchSets() {
     axios
-      .get(`https://gold-lovely-viper.cyclic.app/retrieve/sets/${user_id}`)
+      .get(`https://testme.cyclic.app/retrieve/sets/${user_id}`)
       .then((res) => {
         console.log(res.data);
         setSetsArray(res.data.sets);

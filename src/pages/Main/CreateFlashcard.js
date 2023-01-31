@@ -22,7 +22,7 @@ function CreateFlashcard() {
     const email = localStorage.getItem("user-email");
     const token = localStorage.getItem("user-token");
     axios
-      .post("https://gold-lovely-viper.cyclic.app/create/flashcard", {
+      .post("https://testme.cyclic.app/create/flashcard", {
         email: email,
         token: token,
         subject: subject,

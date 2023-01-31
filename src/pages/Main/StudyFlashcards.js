@@ -91,7 +91,7 @@ function StudyFlashcards(props) {
 
   function fetchCards() {
     axios
-      .get(`https://gold-lovely-viper.cyclic.app/retrieve/set/${setID}`)
+      .get(`https://testme.cyclic.app/retrieve/set/${setID}`)
       .then((res) => {
         setFetchedFlashcards(res.data.flashcards);
       })

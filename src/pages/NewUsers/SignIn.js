@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 function SignIn() {
-  const loginEndpoint = "https://gold-lovely-viper.cyclic.app/user/login";
+  const loginEndpoint = "https://testme.cyclic.app/user/login";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

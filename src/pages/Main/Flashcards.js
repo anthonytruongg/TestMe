@@ -63,9 +63,7 @@ function Flashcards() {
 
   const handleDelete = async () => {
     await axios
-      .delete(
-        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/delete/flashcard/${ID}`
-      )
+      .delete(`https://testme.cyclic.app/delete/flashcard/${ID}`)
       .then((res) => {
         console.log(res.data);
         fetchCards();
@@ -75,7 +73,7 @@ function Flashcards() {
 
   function fetchCards() {
     axios
-      .get(`https://gold-lovely-viper.cyclic.app/retrieve/set/${set_ID}`)
+      .get(`https://testme.cyclic.app/retrieve/set/${set_ID}`)
       .then((res) => {
         setFlashcards(res.data.flashcards);
       })

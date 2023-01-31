@@ -22,7 +22,7 @@ function CreateSets() {
     const token = localStorage.getItem("user-token");
 
     axios
-      .post("https://gold-lovely-viper.cyclic.app/create/set", {
+      .post("https://testme.cyclic.app/create/set", {
         email: email,
         token: token,
         subject: subject,
