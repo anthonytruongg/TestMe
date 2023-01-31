@@ -43,13 +43,10 @@ function Flashcards() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put(
-        `https://flashcard-app-backend-fe63371pl-anthonytruongg.vercel.app/update/flashcard/${ID}`,
-        {
-          title: title,
-          definition: definition,
-        }
-      )
+      .put(`https://testme.cyclic.app/update/flashcard/${ID}`, {
+        title: title,
+        definition: definition,
+      })
       .then((res) => {
         fetchCards();
         toggleModal();
