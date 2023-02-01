@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   HiOutlineHome,
@@ -16,6 +16,13 @@ function Navbar() {
     localStorage.clear();
     navigate("/signin", { replace: true });
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      logout();
+      // logout after 4 hours
+    }, 14400000);
+  });
 
   return (
     <main className="bg-stone-200 text-2xl p-1 lg:text-5xl lg:p-4">
