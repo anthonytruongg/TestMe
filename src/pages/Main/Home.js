@@ -2,10 +2,8 @@ import React from "react";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { MdOutlineModeEditOutline } from "react-icons/md";
-import { BsTrash } from "react-icons/bs";
 
 function Home() {
   const navigate = useNavigate();
