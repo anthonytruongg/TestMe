@@ -3,22 +3,18 @@ import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import instance from "../Misc/api";
 
 function Home() {
   const navigate = useNavigate();
 
   const [setsArray, setSetsArray] = useState([]);
 
-  const email = localStorage.getItem("user-email");
-  const token = localStorage.getItem("user-token");
   const user_id = localStorage.getItem("user-id");
 
-  // use link http://localhost:3001/user/sets/63caf3a0061003c956482838
-
   function fetchSets() {
-    axios
-      .get(`https://testme.cyclic.app/retrieve/sets/${user_id}`)
+    instance
+      .get(`/retrieve/sets/${user_id}`)
       .then((res) => {
         setSetsArray(res.data.sets);
       })
@@ -29,6 +25,7 @@ function Home() {
 
   useEffect(() => {
     fetchSets();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (setsArray.length === 0) {

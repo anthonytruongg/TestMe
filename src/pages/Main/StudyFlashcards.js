@@ -6,7 +6,6 @@ import {
   BsArrowRight,
   BsArrowLeft,
 } from "react-icons/bs";
-import axios from "axios";
 import "./StudyFlashcards.css";
 
 function StudyFlashcards(props) {
@@ -16,7 +15,6 @@ function StudyFlashcards(props) {
   const { setID, flashcards, subject, description } = location.state;
 
   const [viewFlashcard, setViewFlashcard] = useState(true);
-  const [fetchedFlashcards, setFetchedFlashcards] = useState([]);
   const [displayFlashcard, setDisplayFlashcard] = useState([
     {
       title: "",
@@ -89,21 +87,9 @@ function StudyFlashcards(props) {
     }
   };
 
-  function fetchCards() {
-    axios
-      .get(`https://testme.cyclic.app/retrieve/set/${setID}`)
-      .then((res) => {
-        setFetchedFlashcards(res.data.flashcards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    console.log("FETCHED CARDS", fetchedFlashcards);
-  }
-
   useEffect(() => {
     inputFlashcardOne();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   return (

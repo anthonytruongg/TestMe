@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import FlashcardNavbar from "./FlashcardNavbar";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
-import axios from "axios";
 import "./Modal.css";
+import instance from "../Misc/api";
 
 function Flashcards() {
   const location = useLocation();
@@ -17,13 +17,10 @@ function Flashcards() {
   // editing flashcard
   const [title, setTitle] = useState("");
   const [definition, setDefinition] = useState("");
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
   // updating flashcard
   const [ID, setID] = useState("");
-
-  const user_id = localStorage.getItem("user-id");
-  const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -42,8 +39,8 @@ function Flashcards() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .put(`https://testme.cyclic.app/update/flashcard/${ID}`, {
+    await instance
+      .put(`/update/flashcard/${ID}`, {
         title: title,
         definition: definition,
       })
@@ -58,17 +55,15 @@ function Flashcards() {
   };
 
   const handleDelete = async () => {
-    await axios
-      .delete(`https://testme.cyclic.app/delete/flashcard/${ID}`)
-      .then((res) => {
-        fetchCards();
-        toggleDeleteModal();
-      });
+    await instance.delete(`/delete/flashcard/${ID}`).then((res) => {
+      fetchCards();
+      toggleDeleteModal();
+    });
   };
 
   function fetchCards() {
-    axios
-      .get(`https://testme.cyclic.app/retrieve/set/${set_ID}`)
+    instance
+      .get(`/retrieve/set/${set_ID}`)
       .then((res) => {
         setFlashcards(res.data.flashcards);
       })
@@ -79,6 +74,7 @@ function Flashcards() {
 
   useEffect(() => {
     fetchCards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

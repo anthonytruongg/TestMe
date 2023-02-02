@@ -1,8 +1,7 @@
 import React from "react";
-import Navbar from "./Navbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import instance from "../Misc/api";
 import { motion } from "framer-motion";
 
 function CreateSets() {
@@ -13,7 +12,6 @@ function CreateSets() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Handling submit.");
     createSet();
   };
 
@@ -21,8 +19,8 @@ function CreateSets() {
     const email = localStorage.getItem("user-email");
     const token = localStorage.getItem("user-token");
 
-    axios
-      .post("https://testme.cyclic.app/create/set", {
+    instance
+      .post("/create/set", {
         email: email,
         token: token,
         subject: subject,

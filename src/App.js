@@ -1,4 +1,3 @@
-import { Router } from "react-router-dom";
 import AnimatedRoutes from "./AnimatedRoutes";
 import landing from "./util/landing.jpg";
 

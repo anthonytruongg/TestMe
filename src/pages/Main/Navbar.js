@@ -10,8 +10,6 @@ import { IoCreateOutline } from "react-icons/io5";
 function Navbar() {
   const navigate = useNavigate();
 
-  const email = localStorage.getItem("user-email");
-
   const logout = () => {
     localStorage.clear();
     navigate("/signin", { replace: true });

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
-import axios from "axios";
 import { motion } from "framer-motion";
+import instance from "../Misc/api";
+
 function CreateFlashcard() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,8 +21,8 @@ function CreateFlashcard() {
   const createCard = async () => {
     const email = localStorage.getItem("user-email");
     const token = localStorage.getItem("user-token");
-    axios
-      .post("https://testme.cyclic.app/create/flashcard", {
+    instance
+      .post("/create/flashcard", {
         email: email,
         token: token,
         subject: subject,

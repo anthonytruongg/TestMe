@@ -2,11 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
+import instance from "../Misc/api";
 
 function SignIn() {
-  const loginEndpoint = "https://testme.cyclic.app/user/login";
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -16,8 +14,8 @@ function SignIn() {
   function handleSubmit(e) {
     e.preventDefault();
     setMessage("");
-    axios
-      .post(loginEndpoint, {
+    instance
+      .post("/user/login", {
         email: email,
         password: password,
       })

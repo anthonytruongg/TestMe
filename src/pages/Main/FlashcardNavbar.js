@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { HiOutlineHome } from "react-icons/hi";
 import { IoTrashBinOutline, IoAppsOutline } from "react-icons/io5";
 import { BiAddToQueue } from "react-icons/bi";
-import { GrAppsRounded } from "react-icons/gr";
-import axios from "axios";
+import instance from "../Misc/api";
 
 function FlashcardNavbar(props) {
   const location = useLocation();
@@ -17,6 +16,7 @@ function FlashcardNavbar(props) {
   const { subject } = location.state;
 
   const [modal, setModal] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [setID, setSetID] = useState("");
 
   const toggleModal = (id) => {
@@ -31,8 +31,8 @@ function FlashcardNavbar(props) {
   }
 
   const deleteSet = async () => {
-    await axios
-      .delete(`https://testme.cyclic.app/delete/set/${set_ID}`)
+    await instance
+      .delete(`/delete/set/${set_ID}`)
       .then((res) => {
         navigate("/home", { replace: true });
       })

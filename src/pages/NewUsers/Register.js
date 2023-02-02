@@ -1,12 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { motion } from "framer-motion";
+import instance from "../Misc/api";
 
 function Register() {
-  const registerEndpoint = "https://testme.cyclic.app/user/register";
-
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -29,8 +27,8 @@ function Register() {
       all: "",
     });
     e.preventDefault();
-    axios
-      .post(registerEndpoint, {
+    instance
+      .post("/user/register", {
         username: username,
         email: email,
         password: password,
@@ -55,21 +53,17 @@ function Register() {
           setError({ email: res.data });
         }
         if (res.data === "User registered!") {
-          axios.post(
-            "https://testme.cyclic.app/user/register/sendconfirmation",
-            {
-              username: username,
-              email: email,
-            }
-          );
-          // console.log("navigate");
+          instance.post("/user/register/sendconfirmation", {
+            username: username,
+            email: email,
+          });
           setTimeout(() => {
             navigate("/register/success");
           }, 1000);
         }
       })
       .catch((err) => {
-        console.log("Error: ", err);
+        console.log("ERROR HERE!!!!!!: ", err);
       });
   };
 
